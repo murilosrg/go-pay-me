@@ -11,11 +11,6 @@ type Configuration struct {
 		Driver string `json:"driver"`
 		Addr   string `json:"addr"`
 	} `json:"db"`
-	Card struct {
-		Id  string `json:"id"`
-		Pan string `json:"pan"`
-		CVV string `json:"cvv"`
-	} `json:"card"`
 	Address string `json:"address"`
 }
 
