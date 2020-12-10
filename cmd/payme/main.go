@@ -5,6 +5,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/murilosrg/go-pay-me/config"
+	"github.com/murilosrg/go-pay-me/internal/controller"
+	"net/http"
 )
 
 func main() {
@@ -20,14 +22,15 @@ func main() {
 
 	e.Use(middleware.Recover())
 
-	e.Logger.Fatal(e.Start(config.Config().Address))
+	e.Logger.Fatal(e.Start(":8080"))
 }
 
 func SetupAPIRouter(e *echo.Echo) {
 	e.Use(middleware.Logger())
+	http.Handle("/", e)
 
 	group := e.Group("/api")
 	{
-		group.POST("/authorize", nil)
+		group.POST("/pay", controller.CreatePayment)
 	}
 }

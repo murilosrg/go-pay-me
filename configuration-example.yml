@@ -1,0 +1,8 @@
+db:
+  driver: sqlite3
+  addr: ./payme.db
+card:
+  id: "6ca04ab2-a15c-492b-baba-04910f4a8212"
+  pan: "5157 2630 7306 5793"
+  cvv: "655"
+address: ":8080"
