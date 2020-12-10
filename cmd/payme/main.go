@@ -32,5 +32,8 @@ func SetupAPIRouter(e *echo.Echo) {
 	group := e.Group("/api")
 	{
 		group.POST("/pay", controller.CreatePayment)
+		group.GET("/cards", controller.GetCard)
+		group.POST("/cards", controller.CreateCard)
+		group.DELETE("/cards/:id", controller.DeleteCard)
 	}
 }
