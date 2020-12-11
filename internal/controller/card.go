@@ -41,7 +41,7 @@ func (cc *CardController) CreateCard(c echo.Context) error {
 		return err
 	}
 
-	return c.JSON(http.StatusOK, request)
+	return c.JSON(http.StatusCreated, request)
 }
 
 // CreateCard func
@@ -56,8 +56,10 @@ func (cc *CardController) DeleteCard(c echo.Context) error {
 	}
 
 	if err := request.Delete(); err != nil {
-		return err
+		return c.JSON(http.StatusNotFound, utils.Response{
+			Message: "Card not found",
+		})
 	}
 
-	return c.JSON(http.StatusNoContent, nil)
+	return c.NoContent(http.StatusNoContent)
 }
