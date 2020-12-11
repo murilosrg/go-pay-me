@@ -14,7 +14,7 @@ import (
 //Cielo model
 type Cielo struct{}
 
-//Cielo creates a new instance
+//NewCieloService creates a new instance
 func NewCieloService() *Cielo {
 	return &Cielo{}
 }
@@ -24,9 +24,9 @@ func (c *Cielo) Authorize(req request.Payment) (uuid.UUID, error) {
 	var endpoint string
 
 	if req.Purchase.Amount > 10 {
-		endpoint = "/success"
+		endpoint = "success"
 	} else {
-		endpoint = "/failed"
+		endpoint = "failed"
 	}
 
 	payload, err := json.Marshal(req)

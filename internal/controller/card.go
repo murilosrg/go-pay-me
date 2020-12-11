@@ -8,8 +8,16 @@ import (
 	"net/http"
 )
 
+//Card model
+type CardController struct{}
+
+//NewPaymentController creates a new instance
+func NewCardController() *CardController {
+	return &CardController{}
+}
+
 // GetCard func
-func GetCard(c echo.Context) error {
+func (cc *CardController) GetCard(c echo.Context) error {
 	var card model.Card
 	var cards []model.Card
 	var err error
@@ -22,7 +30,7 @@ func GetCard(c echo.Context) error {
 }
 
 // CreateCard func
-func CreateCard(c echo.Context) error {
+func (cc *CardController) CreateCard(c echo.Context) error {
 	request := model.Card{}
 
 	if err := c.Bind(&request); err != nil {
@@ -37,9 +45,9 @@ func CreateCard(c echo.Context) error {
 }
 
 // CreateCard func
-func DeleteCard(c echo.Context) error {
+func (cc *CardController) DeleteCard(c echo.Context) error {
 	request := model.Card{}
-	request.ID =  uuid.FromStringOrNil(c.Param("id"))
+	request.ID = uuid.FromStringOrNil(c.Param("id"))
 
 	if err := c.Bind(&request); err != nil {
 		return c.JSON(http.StatusNotFound, utils.Response{

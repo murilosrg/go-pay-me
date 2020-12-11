@@ -27,11 +27,14 @@ func main() {
 func SetupAPIRouter(e *echo.Echo) {
 	e.Use(middleware.Logger())
 
+	paymentController := controller.NewPaymentController()
+	cardController := controller.NewCardController()
+
 	group := e.Group("/api")
 	{
-		group.POST("/pay", controller.CreatePayment)
-		group.GET("/cards", controller.GetCard)
-		group.POST("/cards", controller.CreateCard)
-		group.DELETE("/cards/:id", controller.DeleteCard)
+		group.POST("/pay", paymentController.CreatePayment)
+		group.GET("/cards", cardController.GetCard)
+		group.POST("/cards", cardController.CreateCard)
+		group.DELETE("/cards/:id", cardController.DeleteCard)
 	}
 }

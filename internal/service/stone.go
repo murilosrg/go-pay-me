@@ -14,7 +14,7 @@ import (
 //Stone model
 type Stone struct{}
 
-//Stone creates a new instance
+//NewStoneService creates a new instance
 func NewStoneService() *Stone {
 	return &Stone{}
 }
@@ -24,9 +24,9 @@ func (s *Stone) Authorize(req request.Payment) (uuid.UUID, error) {
 	var endpoint string
 
 	if req.Purchase.Amount > 10 {
-		endpoint = "/success"
+		endpoint = "success"
 	} else {
-		endpoint = "/failed"
+		endpoint = "failed"
 	}
 
 	payload, err := json.Marshal(req)
