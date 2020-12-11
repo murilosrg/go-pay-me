@@ -19,7 +19,6 @@ $ docker-compose up --build
 
 ```shell
 $ git clone https://github.com/murilosrg/go-pay-me
-
 $ cd go-pay-me
 ```
 
@@ -52,6 +51,7 @@ acquires:
 | address   | Listen address                                        | 
 | acquires  | url of acquires mocked                                | 
 
+obs: all payments over 10 will be approved and below that will be disapproved
 
 ### 4.Init and Run
 
