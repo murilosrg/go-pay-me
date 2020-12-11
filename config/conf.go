@@ -11,7 +11,11 @@ type Configuration struct {
 		Driver string `json:"driver"`
 		Addr   string `json:"addr"`
 	} `json:"db"`
-	Address string `json:"address"`
+	Address  string `json:"address"`
+	Acquires struct {
+		StoneUrl string `json:"stoneUrl"`
+		CieloUrl string `json:"cieloUrl"`
+	} `json:"acquires"`
 }
 
 var conf *Configuration

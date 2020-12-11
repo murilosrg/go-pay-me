@@ -1,4 +1,4 @@
-package model
+package request
 
 //Purchase struct
 type Purchase struct {

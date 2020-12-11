@@ -2,3 +2,6 @@ db:
   driver: sqlite3
   addr: ./payme.db
 address: ":8080"
+acquires:
+  stoneUrl: "http://demo4605147.mockable.io/stone/"
+  cieloUrl: "http://demo4605147.mockable.io/cielo/"

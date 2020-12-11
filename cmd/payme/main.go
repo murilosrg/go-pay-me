@@ -6,14 +6,13 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/murilosrg/go-pay-me/config"
 	"github.com/murilosrg/go-pay-me/internal/controller"
-	"net/http"
 )
 
 func main() {
 	var shouldInit = flag.Bool("init", false, "initialize data")
 	flag.Parse()
 
-	if *shouldInit{
+	if *shouldInit {
 		initAll(config.Config())
 	}
 
@@ -22,12 +21,11 @@ func main() {
 
 	e.Use(middleware.Recover())
 
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.Start(config.Config().Address))
 }
 
 func SetupAPIRouter(e *echo.Echo) {
 	e.Use(middleware.Logger())
-	http.Handle("/", e)
 
 	group := e.Group("/api")
 	{

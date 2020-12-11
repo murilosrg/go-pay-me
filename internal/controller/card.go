@@ -3,6 +3,7 @@ package controller
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/murilosrg/go-pay-me/internal/model"
+	"github.com/murilosrg/go-pay-me/internal/utils"
 	uuid "github.com/satori/go.uuid"
 	"net/http"
 )
@@ -14,7 +15,7 @@ func GetCard(c echo.Context) error {
 	var err error
 
 	if cards, err = card.Get(); err != nil {
-		return err
+		return c.JSON(http.StatusBadRequest, err)
 	}
 
 	return c.JSON(http.StatusOK, cards)
@@ -25,10 +26,10 @@ func CreateCard(c echo.Context) error {
 	request := model.Card{}
 
 	if err := c.Bind(&request); err != nil {
-		return err
+		return c.JSON(http.StatusBadRequest, err)
 	}
 
-	if _, err := request.Create(); err != nil {
+	if err := request.Create(); err != nil {
 		return err
 	}
 
@@ -41,10 +42,12 @@ func DeleteCard(c echo.Context) error {
 	request.ID =  uuid.FromStringOrNil(c.Param("id"))
 
 	if err := c.Bind(&request); err != nil {
-		return err
+		return c.JSON(http.StatusNotFound, utils.Response{
+			Message: "Card not found",
+		})
 	}
 
-	if _, err := request.Delete(); err != nil {
+	if err := request.Delete(); err != nil {
 		return err
 	}
 
